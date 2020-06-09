@@ -18,6 +18,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+    await client.change_presence(activity = discord.Game(name = "hoot hoot"))
 
 @client.event
 async def on_message(message):
