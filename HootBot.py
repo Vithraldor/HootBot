@@ -16,7 +16,7 @@ async def on_message(message):
         return
 
     # If user types F to pay respects. A number is randomly generated between 0 and 100 to represent the 'total' amount of respects given.
-    elif message.content.startswith('F'):
+    elif message.content == 'F':
         seed()
         respectCounter = int(random.random() * 100)
         await message.channel.send('Hoot hoot!\n*Respects have been paid. Total respects paid: {}*'.format(respectCounter))
