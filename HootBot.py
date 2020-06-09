@@ -36,4 +36,5 @@ async def on_message(message):
         if probabilityValue >= 50:
             await message.channel.send('Hoot hoot')
 
-client.run('')
+
+client.run('Replace this with your bot token')
