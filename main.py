@@ -38,9 +38,19 @@ async def hoot(ctx, message):
     if '@' in username:
         await ctx.send("{} HOOT HOOT HOOT HOOT".format(username))
         await ctx.message.delete()
-        
+
     else:
         await ctx.send("Hoot?\n*I need a username to use this command. Please try again.*")
+
+@client.command()
+async def info(ctx):
+    githubLink = 'https://github.com/Vithraldor/HootBot'
+    await ctx.send("**HootBot v1.3**\nCreated and run by Vithraldor.\nIf there are any issues please ping @Vithraldor#3645.\nSource Code: {}\n*Last updated June 10 2020*".format(githubLink))
+
+@client.command()
+async def invite(ctx):
+    inviteLink = 'https://discord.com/oauth2/authorize?client_id=719998133203107891&permissions=0&scope=bot'
+    await ctx.send('{}'.format(inviteLink))
 
 # Automatic interactions done by the bot:
 @client.event
