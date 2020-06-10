@@ -30,7 +30,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    # If user types F to pay respects. A number is randomly generated between 0 and 100 to represent the 'total' amount of respects given.
+    # If user types F to pay respects. Counts amount of respects given across ALL servers the bot is active in.
     elif message.content == 'F' or message.content == 'f':
         global respectCounter
         respectCounter += 1
