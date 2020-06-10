@@ -8,7 +8,7 @@ Past Versions:
 v1.0 (6/9/2020): initial release of bot.
 v1.1 (6/9/2020): minor bug fixes to F event, altered probability value for default case.
 v1.2 (6/9/2020): Reworked F event: now increments instead of randomly generating numbers
-v1.2 (6/10/2020): basic commands added
+v1.3 (6/10/2020): basic commands added
 '''
 
 import discord
