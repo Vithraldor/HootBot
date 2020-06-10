@@ -1,5 +1,5 @@
 '''
-HootBot v1.2
+HootBot v1.3
 
 Developed for personal use by Vithraldor.
 This is a basic bot that mimics an owl.
