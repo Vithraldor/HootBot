@@ -37,6 +37,8 @@ async def hoot(ctx, message):
 
     if '@' in username:
         await ctx.send("{} HOOT HOOT HOOT HOOT".format(username))
+        await ctx.message.delete()
+        
     else:
         await ctx.send("Hoot?\n*I need a username to use this command. Please try again.*")
 
