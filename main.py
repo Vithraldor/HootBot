@@ -93,12 +93,12 @@ async def on_message(message):
     elif 'HOOT' in message.content:
         await message.channel.send('***HoOt HOoT***')
 
-    # Default case. Will only send messages 33% of the time to reduce annoyance.
+    # Default case. Will only send messages 20% of the time to reduce annoyance.
     else:
         seed()
         probabilityValue = int(random.random() * 100)
 
-        elif probabilityValue >= 66:
+        elif probabilityValue >= 80:
             await message.channel.send('Hoot hoot')
 
 client.run('Your bot token here')
