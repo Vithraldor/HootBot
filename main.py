@@ -9,6 +9,7 @@ v1.0 (6/9/2020): initial release of bot.
 v1.1 (6/9/2020): minor bug fixes to F event, altered probability value for default case.
 v1.2 (6/9/2020): Reworked F event: now increments instead of randomly generating numbers
 v1.3 (6/10/2020): basic commands added
+v1.4 (7/12/2020): coinflip, another random instance added
 '''
 
 import discord
@@ -19,12 +20,16 @@ from random import seed
 
 client = commands.Bot(command_prefix = 'h!')
 
+global respectCounter
+respectCounter = 0
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    await client.change_presence(activity = discord.Game(name = "hoot hoot | h!hoot"))
-    global respectCounter
-    respectCounter = 0
+
+    startupMessage = "The Hootening | h!help"
+    await client.change_presence(activity = discord.Streaming(name = startupMessage, url = "https://github.com/Vithraldor/HootBot"))
+   
 
 # Commands
 @client.command()
@@ -43,14 +48,25 @@ async def hoot(ctx, message):
         await ctx.send("Hoot?\n*I need a username to use this command. Please try again.*")
 
 @client.command()
+async def coinflip(ctx):
+    seed()
+    flipChance = int(random.random() * 100)
+
+    if flipChance >= 50:
+        await ctx.send(":money_with_wings: Hoot! You got **heads**.")
+
+    else:
+        await ctx.send(":money_with_wings: Hoot! You got **tails**.")
+
+@client.command()
 async def info(ctx):
     githubLink = 'https://github.com/Vithraldor/HootBot'
-    await ctx.send("**HootBot v1.3**\nCreated and run by Vithraldor.\nIf there are any issues please ping @Vithraldor#3645.\nSource Code: {}\n*Last updated June 10 2020*".format(githubLink))
+    await ctx.send("**HootBot v1.3**\nCreated and run by Vithraldor.\nIf there are any issues please ping @Vithraldor#3645.\nSource Code: {}\n*Last updated July 12 2020*".format(githubLink))
 
 @client.command()
 async def invite(ctx):
     inviteLink = 'https://discord.com/oauth2/authorize?client_id=719998133203107891&permissions=0&scope=bot'
-    await ctx.send('{}'.format(inviteLink))
+    await ctx.send('Invite HootBot to your server by using this link:\n{}'.format(inviteLink))
 
 # Automatic interactions done by the bot:
 @client.event
@@ -70,8 +86,8 @@ async def on_message(message):
         await message.channel.send('Hoot hoot!\n*Respects have been paid. Total respects paid: {}*'.format(respectCounter))
 
     # Adapability for Twitch emotes
-    elif message.content == 'WHOMEGALUL' or message.content == 'whomegalul':
-        await message.channel.send("HOOTMEGALUL")
+    elif message.content.lower() == "whomegalul":
+        await message.channel.send("HOOMEGALUL :owl:")
 
     # If messages contain 'who' or 'WHO'
     elif 'who' in message.content:
@@ -88,17 +104,24 @@ async def on_message(message):
         if 'h!hoot' in message.content:
             return
         else:
-            await message.channel.send('Hoot?')
+            await message.channel.send('Hoot? :owl:')
 
     elif 'HOOT' in message.content:
         await message.channel.send('***HoOt HOoT***')
 
-    # Default case. Will only send messages 20% of the time to reduce annoyance.
+    # If user is mean :(
+    elif 'shut up' in message.content.lower():
+        await message.channel.send("Hoot :(\n*(You made the bot sad. Great work!)*")
+
+    # Default case.
     else:
         seed()
         probabilityValue = int(random.random() * 100)
+        
+        if probabilityValue == 69:
+            await message.channel.send('Hoot. *(nice.)*')
 
-        elif probabilityValue >= 80:
+        elif probabilityValue > 85:
             await message.channel.send('Hoot hoot')
 
-client.run('Your bot token here')
+client.run('')
